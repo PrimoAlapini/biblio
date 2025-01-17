@@ -1,46 +1,57 @@
 package bj.highfiveuniversity.biblio.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import bj.highfiveuniversity.biblio.model.Book;
+import bj.highfiveuniversity.biblio.service.BookService;
 
 
 
 @RestController
 @RequestMapping("/book")
 public class BookController {
+
+    @Autowired
+    BookService bookService;
     
     @GetMapping()
-    public String getAllBooks() {
-        return "Liste de tous les livres";
+    public List<Book> getAllBooks() {
+        
+        return bookService.getAllBook();
     }
 
-    @GetMapping("add")
-    public String addBook() {
-        return "Livre ajouté avec succès";
+    @PostMapping("add")
+    public Book addBook(@RequestBody Book livre) {
+        return bookService.addBook(livre);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteBook(@PathVariable String id) {
+    public String deleteBook(@PathVariable Long id) {
+        bookService.deleteBook(id);
         return "le livre avec l'id " + id + " a été supprimé";
     }
 
     @GetMapping("/{id}")
-    public String getMethodName(@PathVariable String id) {
-        return "le livre avec l'id " + id + " a été trouvé et retourné à la vue";
+    public String getBook(@PathVariable Long id) {
+        return "le livre avec l'id " + id + " a été trouvé et retourné à la vue \n" + 
+        bookService.getBook(id);
     }
 
-    @GetMapping("/old/{id}")
-    public String getOldBookById(@PathVariable String id) {
-        return "Voici les livres les plus vieux: " + id + "";
+    @PutMapping
+    public String updateBook(@RequestBody Book livre) {
+        bookService.updateBook(livre);
+        return "Livre mis à jour";
     }
-
-    @GetMapping("search")
-    public String searchBooks(@RequestParam String author, @RequestParam(required = true) String year) {
-            return "Recherche des livres de l'auteur : " + author + " pour l'annee : " + year;
-    }
+    
     
 }

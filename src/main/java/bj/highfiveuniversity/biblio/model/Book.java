@@ -34,11 +34,11 @@ public class Book {
     )
     private Set<Author> auteurs;
 
-    public Book( String title, String isbn, LocalDate published_at) {
-        this.title = title;
-        this.isbn = isbn;
-        this.published_at = published_at;
-    }
+    // public Book( String title, String isbn, LocalDate published_at) {
+    //     this.title = title;
+    //     this.isbn = isbn;
+    //     this.published_at = published_at;
+    // }
 
     public long getId() {
         return id;
@@ -66,5 +66,13 @@ public class Book {
 
     public void setPublished_at(LocalDate published_at) {
         this.published_at = published_at;
+    }
+
+    public Set<Author> getAuteurs() {
+        return auteurs;
+    }
+
+    public void setAuteurs(Set<Author> auteurs) {
+        this.auteurs = auteurs;
     }
 }

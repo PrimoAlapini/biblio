@@ -25,11 +25,11 @@ public class Author {
     private Set<Book> books;
 
 
-    public Author(String nom, String prenom, String nationnalité) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.nationnalité = nationnalité;
-    }
+    // public Author(String nom, String prenom, String nationnalité) {
+    //     this.nom = nom;
+    //     this.prenom = prenom;
+    //     this.nationnalité = nationnalité;
+    // }
 
     public long getId() {
         return id;
