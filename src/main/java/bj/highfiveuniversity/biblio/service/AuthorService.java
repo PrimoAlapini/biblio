@@ -25,7 +25,7 @@ public class AuthorService {
     }
 
     public List<Author> getAllAuthor() {
-        Long count = auteurRepository.count();
+        // Long count = auteurRepository.count();
         List<Author> auteurs = auteurRepository.findAll();
 
         return auteurs;
