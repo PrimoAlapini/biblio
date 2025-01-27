@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import bj.highfiveuniversity.biblio.dto.RegisterDTO;
@@ -21,15 +22,15 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-    // @Autowired
-    // private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public void register(RegisterDTO registerData) {
         User newUser = new User();
         newUser.setUsername(registerData.getUsername());
         newUser.setEmail(registerData.getEmail());
         newUser.setDob(registerData.getDob());
-        newUser.setPassword(registerData.getPassword());
+        newUser.setPassword(passwordEncoder.encode(registerData.getPassword()));
 
         // Récupérer les rôles et les associer à l'utilisateur
         List<Role> userRoles = new ArrayList<>();

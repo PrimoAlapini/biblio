@@ -19,7 +19,7 @@ public class RegisterDTO {
     
     @NotNull(message = "Le mot de passe est requis")
     @NotBlank(message = "Le mot de passe ne peut être vide")
-    @Size(min = 6, message = "Le mot de passe doit contenir au moins 6 caractères")
+    @Size(min = 8, message = "Le mot de passe doit contenir au moins 6 caractères")
     @Pattern(
         regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$", 
         message = "Le mot de passe doit contenir au moins une lettre, un chiffre et un symbole spécial"
